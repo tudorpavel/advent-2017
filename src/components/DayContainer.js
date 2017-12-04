@@ -7,13 +7,15 @@ class DayContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.dayHandler = props.dayHandler;
+    this.handleNormal = props.dayHandler.normal;
+    this.handleBonus = props.dayHandler.bonus;
 
     this.handleChange = this.handleChange.bind(this);
 
     this.state = {
       inputText: '',
-      outputText: ''
+      outputTextNormal: '',
+      outputTextBonus: ''
     }
   }
 
@@ -22,19 +24,21 @@ class DayContainer extends Component {
 
     this.setState({
       inputText: newInputText,
-      outputText: this.dayHandler(newInputText)
+      outputTextNormal: this.handleNormal(newInputText),
+      outputTextBonus: this.handleBonus(newInputText)
     });
   }
 
   render() {
     const { titleId } = this.props;
-    const { inputText, outputText } = this.state;
+    const { inputText, outputTextNormal, outputTextBonus } = this.state;
 
     return (
       <Day
         titleId={ titleId }
         inputText={ inputText }
-        outputText={ outputText }
+        outputTextNormal={ outputTextNormal }
+        outputTextBonus={ outputTextBonus }
         onChange={ this.handleChange }
       />
     );
@@ -43,7 +47,7 @@ class DayContainer extends Component {
 
 DayContainer.propTypes = {
   titleId: PropTypes.string.isRequired,
-  dayHandler: PropTypes.func.isRequired
+  dayHandler: PropTypes.object.isRequired
 };
 
 export default DayContainer;

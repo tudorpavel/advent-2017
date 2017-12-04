@@ -44,10 +44,10 @@ const day2 = (inputText, rowChecksum) => {
   return finalChecksum(rows.map(rowChecksum)).toString();
 }
 
-export const day2Normal = (inputText) => {
+export function normal(inputText) {
   return day2(inputText, rowChecksumNormal);
 };
 
-export const day2Bonus = (inputText) => {
+export function bonus(inputText) {
   return day2(inputText, rowChecksumBonus);
 };

@@ -4,8 +4,8 @@ import logo from './logo.svg';
 import './App.css';
 
 import DayContainer from './components/DayContainer';
-import { day1Normal, day1Bonus } from './utils/day1';
-import { day2Normal, day2Bonus } from './utils/day2';
+import * as day1 from './utils/day1';
+import * as day2 from './utils/day2';
 
 class App extends Component {
   render() {
@@ -17,20 +17,12 @@ class App extends Component {
         </header>
         <div className="App__content">
           <DayContainer
-            titleId="Day2-Normal"
-            dayHandler={ day2Normal }
+            titleId="Day2"
+            dayHandler={ day2 }
           />
           <DayContainer
-            titleId="Day2-Bonus"
-            dayHandler={ day2Bonus }
-          />
-          <DayContainer
-            titleId="Day1-Normal"
-            dayHandler={ day1Normal }
-          />
-          <DayContainer
-            titleId="Day1-Bonus"
-            dayHandler={ day1Bonus }
+            titleId="Day1"
+            dayHandler={ day1 }
           />
         </div>
       </div>

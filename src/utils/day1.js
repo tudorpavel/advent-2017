@@ -16,10 +16,10 @@ const day1 = (inputText, comparisonStep) => {
   return result.toString();
 };
 
-export const day1Normal = (inputText) => {
+export function normal(inputText) {
   return day1(inputText, 1);
 };
 
-export const day1Bonus = (inputText) => {
+export function bonus(inputText) {
   return day1(inputText, inputText.length / 2);
 };
