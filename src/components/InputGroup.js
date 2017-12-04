@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const InputGroup = ({ labelText, inputName }) => {
   return (
     <div className="InputGroup">
       <label
-        for={ inputName }
+        htmlFor={ inputName }
         className="InputGroup__label"
       >
         { labelText }
@@ -18,6 +19,11 @@ const InputGroup = ({ labelText, inputName }) => {
       />
     </div>
   );
+};
+
+InputGroup.propTypes = {
+  labelText: PropTypes.string.isRequired,
+  inputName: PropTypes.string.isRequired
 };
 
 export default InputGroup;

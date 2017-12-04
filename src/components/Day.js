@@ -1,25 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import InputGroup from './InputGroup';
 
-const Day = () => {
+const Day = ({ titleId }) => {
   return (
     <div className="Day">
       <h2 className="Day__title">
-        Day
+        { titleId }
       </h2>
       <div className="Day__form">
         <InputGroup
           labelText="Input"
-          inputName="input"
+          inputName={ `${titleId}-input` }
         />
         <InputGroup
           labelText="Output"
-          inputName="output"
+          inputName={ `${titleId}-output` }
         />
       </div>
     </div>
   );
+};
+
+Day.propTypes = {
+  titleId: PropTypes.string.isRequired
 };
 
 export default Day;

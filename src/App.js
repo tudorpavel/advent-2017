@@ -13,8 +13,8 @@ class App extends Component {
           <h1 className="App__title">Advent of Code 2017</h1>
         </header>
         <div className="App__content">
-          <Day />
-          <Day />
+          <Day titleId="Day1" />
+          <Day titleId="Day2" />
         </div>
       </div>
     );
