@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './InputGroup.css';
 
-const InputGroup = ({ labelText, inputName }) => {
+const InputGroup = ({ labelText, inputName, inputValue, onChange }) => {
   return (
     <div className="InputGroup">
       <label
@@ -18,6 +18,8 @@ const InputGroup = ({ labelText, inputName }) => {
         name={ inputName }
         rows="10"
         className="InputGroup__input"
+        value={ inputValue }
+        onChange={ onChange }
       />
     </div>
   );
@@ -25,7 +27,9 @@ const InputGroup = ({ labelText, inputName }) => {
 
 InputGroup.propTypes = {
   labelText: PropTypes.string.isRequired,
-  inputName: PropTypes.string.isRequired
+  inputName: PropTypes.string.isRequired,
+  inputValue: PropTypes.string.isRequired,
+  onChange: PropTypes.func
 };
 
 export default InputGroup;

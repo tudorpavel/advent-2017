@@ -5,7 +5,7 @@ import './Day.css';
 
 import InputGroup from './InputGroup';
 
-const Day = ({ titleId }) => {
+const Day = ({ titleId, inputText, outputText, onChange }) => {
   return (
     <div className="Day">
       <h2 className="Day__title">
@@ -15,10 +15,13 @@ const Day = ({ titleId }) => {
         <InputGroup
           labelText="Input"
           inputName={ `${titleId}-input` }
+          inputValue={ inputText }
+          onChange={ onChange }
         />
         <InputGroup
           labelText="Output"
           inputName={ `${titleId}-output` }
+          inputValue={ outputText }
         />
       </div>
     </div>
@@ -26,7 +29,10 @@ const Day = ({ titleId }) => {
 };
 
 Day.propTypes = {
-  titleId: PropTypes.string.isRequired
+  titleId: PropTypes.string.isRequired,
+  inputText: PropTypes.string.isRequired,
+  outputText: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
 };
 
 export default Day;
