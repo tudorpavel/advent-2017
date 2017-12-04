@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './InputGroup.css';
+
 const InputGroup = ({ labelText, inputName }) => {
   return (
     <div className="InputGroup">
