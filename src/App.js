@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import Day from './components/Day';
+import Day1Container from './components/Day1Container';
 
 class App extends Component {
   render() {
@@ -14,8 +14,7 @@ class App extends Component {
           <h1 className="App__title">Advent of Code 2017</h1>
         </header>
         <div className="App__content">
-          <Day titleId="Day1" />
-          <Day titleId="Day2" />
+          <Day1Container />
         </div>
       </div>
     );
