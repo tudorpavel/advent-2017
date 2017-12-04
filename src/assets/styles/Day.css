@@ -1,0 +1,10 @@
+.Day {
+  display: inline-block;
+}
+
+.Day__title {
+}
+
+.Day__form {
+  display: flex;
+}

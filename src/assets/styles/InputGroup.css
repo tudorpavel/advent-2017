@@ -1,0 +1,14 @@
+.InputGroup {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 150px;
+}
+
+.InputGroup__label {
+  padding-bottom: .5rem;
+}
+
+.InputGroup__input {
+}
