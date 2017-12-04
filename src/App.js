@@ -4,7 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import DayContainer from './components/DayContainer';
-import day1 from './utils/day1';
+import { day1Normal, day1Bonus } from './utils/day1';
 
 class App extends Component {
   render() {
@@ -16,8 +16,12 @@ class App extends Component {
         </header>
         <div className="App__content">
           <DayContainer
-            titleId="Day1"
-            dayHandler={ day1 }
+            titleId="Day1-Normal"
+            dayHandler={ day1Normal }
+          />
+          <DayContainer
+            titleId="Day1-Bonus"
+            dayHandler={ day1Bonus }
           />
         </div>
       </div>
