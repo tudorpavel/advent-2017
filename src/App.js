@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import DayContainer from './components/DayContainer';
+import day1 from './utils/day1';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
         <div className="App__content">
           <DayContainer
             titleId="Day1"
+            dayHandler={ day1 }
           />
         </div>
       </div>

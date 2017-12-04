@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import Day from './Day';
 
 class DayContainer extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    this.dayHandler = props.dayHandler;
 
     this.handleChange = this.handleChange.bind(this);
 
@@ -20,7 +22,7 @@ class DayContainer extends Component {
 
     this.setState({
       inputText: newInputText,
-      outputText: newInputText
+      outputText: this.dayHandler(newInputText)
     });
   }
 
@@ -40,7 +42,8 @@ class DayContainer extends Component {
 };
 
 DayContainer.propTypes = {
-  titleId: PropTypes.string.isRequired
+  titleId: PropTypes.string.isRequired,
+  dayHandler: PropTypes.func.isRequired
 };
 
 export default DayContainer;
