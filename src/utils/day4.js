@@ -4,22 +4,32 @@ const rowsFromInput = (inputText) => {
     .map(row => row.split(/\s/));
 };
 
-const day4 = (inputText) => {
+const wordsPolicyNormal = (words) => {
+  return words.length === [...new Set(words)].length;
+}
+
+const wordsPolicyBonus = (words) => {
+  const wordsWithEachSorted = words.map((word) => {
+    return word.split('').sort().join('');
+  });
+
+  return wordsPolicyNormal(wordsWithEachSorted);
+}
+
+const day4 = (inputText, wordsPolicy) => {
   if (inputText === null) {
     return 'invalid input';
   }
 
   const rows = rowsFromInput(inputText);
 
-  return rows.filter((words) => {
-    return words.length === [...new Set(words)].length;
-  }).length.toString();
+  return rows.filter(wordsPolicy).length.toString();
 }
 
 export function normal(inputText) {
-  return day4(inputText);
+  return day4(inputText, wordsPolicyNormal);
 };
 
 export function bonus(inputText) {
-  return 'N/A';
+  return day4(inputText, wordsPolicyBonus);
 };
