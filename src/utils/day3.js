@@ -1,19 +1,34 @@
-const computeDistance = (lookupValue, currentIndex, currentLayerValue) => {
-  console.log(lookupValue, currentIndex, currentLayerValue);
-  if ((lookupValue - 2) < 0 ||
-      currentIndex < 2 ||
-      currentLayerValue < 8) {
+const computeDistance = (lookupValue, currentIndex, baseLayerValue) => {
+  if (lookupValue < 0 ||
+      currentIndex < 1 ||
+      baseLayerValue < 0) {
     return 0;
   }
 
-  if (Math.floor((lookupValue - 2) / currentLayerValue) === 0) {
-    return (lookupValue - 1) % (currentIndex * 2 - 1);
+  const layerSize = 8 * (currentIndex);
+  const nextBaseLayerValue = baseLayerValue + layerSize;
+
+  if (Math.floor(lookupValue / nextBaseLayerValue) === 0) {
+    const lookupIndexInLayer = lookupValue - baseLayerValue;
+    let adjustIndex;
+
+    if (lookupIndexInLayer === layerSize - 1) {
+      adjustIndex = 0;
+    } else {
+      adjustIndex = lookupIndexInLayer + 1;
+    }
+
+    const relativeAdjust = Math.abs(
+      (adjustIndex % (2 * currentIndex)) - currentIndex
+    );
+
+    return relativeAdjust + currentIndex;
   }
 
   return computeDistance(
     lookupValue,
     currentIndex + 1,
-    currentLayerValue + 8 * (currentIndex - 1)
+    nextBaseLayerValue
   );
 };
 
@@ -24,7 +39,9 @@ const day3 = (inputText) => {
     return 'input needs to be a number';
   }
 
-  return computeDistance(memoryIndex, 2, 8).toString();
+  const normalizedLookupIndex = memoryIndex - 2;
+
+  return computeDistance(normalizedLookupIndex, 1, 0).toString();
 };
 
 export function normal(inputText) {
@@ -32,5 +49,5 @@ export function normal(inputText) {
 };
 
 export function bonus(inputText) {
-  return day3(inputText);
+  return 'N/A';
 };
