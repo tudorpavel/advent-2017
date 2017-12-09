@@ -1,3 +1,6 @@
+import FlexibleMatrix from './FlexibleMatrix';
+import SpiralMatrixBonus from './SpiralMatrixBonus';
+
 const computeDistance = (lookupValue, currentIndex, baseLayerValue) => {
   if (lookupValue < 0 ||
       currentIndex < 1 ||
@@ -32,22 +35,40 @@ const computeDistance = (lookupValue, currentIndex, baseLayerValue) => {
   );
 };
 
-const day3 = (inputText) => {
-  const memoryIndex = parseInt(inputText, 10);
+const day3 = (inputText, computeFunction) => {
+  const inputNumber = parseInt(inputText, 10);
 
-  if (isNaN(memoryIndex)) {
+  if (isNaN(inputNumber)) {
     return 'input needs to be a number';
   }
 
-  const normalizedLookupIndex = memoryIndex - 2;
-
-  return computeDistance(normalizedLookupIndex, 1, 0).toString();
-};
+  return computeFunction(inputNumber);
+}
 
 export function normal(inputText) {
-  return day3(inputText);
+  return day3(
+    inputText,
+    (inputNumber) => {
+      const normalizedLookupIndex = inputNumber - 2;
+
+      return computeDistance(normalizedLookupIndex, 1, 0).toString();
+    }
+  );
 };
 
 export function bonus(inputText) {
-  return 'N/A';
+  return day3(
+    inputText,
+    (inputNumber) => {
+      let matrix = new FlexibleMatrix();
+      let spiralMatrix = new SpiralMatrixBonus(matrix);
+      let currentValue = 1;
+
+      while (currentValue <= inputNumber) {
+        currentValue = spiralMatrix.next();
+      }
+
+      return currentValue.toString();
+    }
+  );
 };
