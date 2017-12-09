@@ -1,0 +1,23 @@
+{
+  "ecmaVersion": 6,
+  "libs": [
+    "browser",
+    "react"
+  ],
+  "loadEagerly": [
+    "src/**/*.js"
+  ],
+  "dontLoad": [
+    ".git/**",
+    "build/**",
+    "node_modules/**",
+    "public/**"
+  ],
+  "plugins": {
+    "es_modules": {},
+    "doc_comment": {
+      "fullDocs": true,
+      "strong": true
+    }
+  }
+}

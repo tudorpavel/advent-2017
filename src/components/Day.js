@@ -5,7 +5,7 @@ import './Day.css';
 
 import InputGroup from './InputGroup';
 
-const Day = ({ titleId, inputText, outputTextNormal, outputTextBonus,onChange }) => {
+const Day = ({ titleId, inputText, outputTextNormal, outputTextBonus, onChange }) => {
   return (
     <div className="Day">
       <h2 className="Day__title">
