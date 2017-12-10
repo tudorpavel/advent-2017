@@ -7,15 +7,7 @@ const parseInput = (inputText) => {
     .map(row => Instruction.build(row));
 };
 
-const computeNormal = () => {
-  return Register.maxValue().toString();
-}
-
-const computeBonus = () => {
-  return Register.maxHistoricalValue().toString();
-}
-
-const day8 = (inputText, computeFunction) => {
+const executeInstructions = (inputText) => {
   if (inputText === null) {
     return 'invalid input';
   }
@@ -25,14 +17,16 @@ const day8 = (inputText, computeFunction) => {
   for (let instruction of instructions) {
     instruction.execute();
   }
-
-  return computeFunction();
 }
 
 export function normal(inputText) {
-  return day8(inputText, computeNormal);
+  executeInstructions(inputText);
+
+  return Register.maxValue().toString();
 };
 
 export function bonus(inputText) {
-  return day8(inputText, computeBonus);
+  executeInstructions(inputText);
+
+  return Register.maxHistoricalValue().toString();
 };
