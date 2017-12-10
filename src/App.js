@@ -12,6 +12,7 @@ import * as day5 from './utils/day5';
 import * as day6 from './utils/day6';
 import * as day7 from './utils/day7';
 import * as day8 from './utils/day8';
+import * as day9 from './utils/day9';
 
 class App extends Component {
   render() {
@@ -23,12 +24,12 @@ class App extends Component {
         </header>
         <div className="App__content">
           <DayContainer
+            titleId="Day9"
+            dayHandler={ day9 }
+          />
+          <DayContainer
             titleId="Day8"
             dayHandler={ day8 }
-            inputText="b inc 5 if a > 1
-a inc 1 if b < 5
-c dec -10 if a >= 1
-c inc -20 if c == 10"
           />
           <DayContainer
             titleId="Day7"
