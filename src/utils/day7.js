@@ -8,13 +8,13 @@ const parseInput = (inputText) => {
 };
 
 const computeNormal = (tower) => {
-  for (let [id, program] of Object.entries(tower.programMap)) {
-    if (program.parent == null) {
-      return id;
-    }
-  }
+  return tower.root.id;
+}
 
-  return 'no root node found';
+const computeBonus = (tower) => {
+  tower.computeDesiredWeight();
+
+  return 'bla';
 }
 
 const day7 = (inputText, computeFunction) => {
@@ -33,5 +33,5 @@ export function normal(inputText) {
 };
 
 export function bonus(inputText) {
-  return 'N/A';
+  return day7(inputText, computeBonus);
 };
