@@ -2,10 +2,8 @@ export default class Memory {
   constructor(banks) {
     this.banks = banks;
 
-    this.history = [];
+    this.resetHistory();
     this.currentIndex = 0;
-
-    this._save();
   }
 
   hasDuplicate() {
@@ -30,6 +28,11 @@ export default class Memory {
       maxBank--;
     }
 
+    this._save();
+  }
+
+  resetHistory() {
+    this.history = [];
     this._save();
   }
 

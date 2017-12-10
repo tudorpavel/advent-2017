@@ -7,14 +7,7 @@ const parseInput = (inputText) => {
     .filter(row => !isNaN(row));
 };
 
-const day6 = (inputText) => {
-  if (inputText === null) {
-    return 'invalid input';
-  }
-
-  const banks = parseInput(inputText);
-  const memoryBanks = new Memory(banks);
-
+const computeNormal = (memoryBanks) => {
   while (!memoryBanks.hasDuplicate()) {
     memoryBanks.redistribute();
   }
@@ -22,10 +15,29 @@ const day6 = (inputText) => {
   return (memoryBanks.history.length - 1).toString();
 }
 
+const computeBonus = (memoryBanks) => {
+  computeNormal(memoryBanks);
+
+  memoryBanks.resetHistory();
+
+  return computeNormal(memoryBanks);
+}
+
+const day6 = (inputText, computeFunction) => {
+  if (inputText === null) {
+    return 'invalid input';
+  }
+
+  const banks = parseInput(inputText);
+  const memoryBanks = new Memory(banks);
+
+  return computeFunction(memoryBanks);
+}
+
 export function normal(inputText) {
-  return day6(inputText);
+  return day6(inputText, computeNormal);
 };
 
 export function bonus(inputText) {
-  return 'N/A';
+  return day6(inputText, computeBonus);
 };
