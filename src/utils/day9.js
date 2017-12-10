@@ -1,16 +1,12 @@
 import Stack from './day9/Stack';
 
-const parseInput = (inputText) => {
-  const escapeRegex = new RegExp(/(!.)/g);
-  const garbageRegex = new RegExp(/(<[^>]*>)+/g)
-
-  return inputText
-    .replace(escapeRegex, '')
-    .replace(garbageRegex, '');
-};
+const escapeRegex = new RegExp(/(!.)/g);
+const garbageRegex = new RegExp(/(<[^>]*>)+/g)
 
 export function normal(inputText) {
-  const noTrash = parseInput(inputText);
+  const noTrash = inputText
+    .replace(escapeRegex, '')
+    .replace(garbageRegex, '');
   const stack = new Stack();
 
   for (let char of noTrash.split('')) {
@@ -25,5 +21,14 @@ export function normal(inputText) {
 };
 
 export function bonus(inputText) {
-  return 'N/A';
+  const noEscaped = inputText.replace(escapeRegex, '');
+  const matches = noEscaped.match(garbageRegex);
+
+  if (matches == null) {
+    return '0';
+  }
+
+  return matches.reduce((sum, match) => {
+    return sum + (match.length - 2);
+  }, 0).toString();
 };
