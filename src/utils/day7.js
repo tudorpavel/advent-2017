@@ -12,9 +12,7 @@ const computeNormal = (tower) => {
 }
 
 const computeBonus = (tower) => {
-  tower.computeDesiredWeight();
-
-  return 'bla';
+  return tower.computeDesiredWeight().toString();
 }
 
 const day7 = (inputText, computeFunction) => {

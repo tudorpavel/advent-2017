@@ -28,60 +28,79 @@ export default class Tower {
   }
 
   computeDesiredWeight() {
-    return this.weight(this.root).desired;
+    const wrongResult = this.findWrongProgram(this.root);
+
+    if (wrongResult.wrongProgram != null) {
+      return wrongResult.wrongProgram.weight + wrongResult.wrongDiff;
+    } else {
+      return -1;
+    }
   }
 
-  weight(currentProgram) {
+  findWrongProgram(currentProgram) {
     if (currentProgram.children.length === 0) {
       return {
+        wrongProgram: null,
+        wrongDiff: null,
         program: currentProgram,
-        desired: null,
-        weight: currentProgram.weight
+        totalWeight: currentProgram.weight
       };
     }
 
-    const childWeights = currentProgram.children.map((child) => {
-      return this.weight(child);
+    const results = currentProgram.children.map((child) => {
+      return this.findWrongProgram(child);
     });
-    let desired = childWeights
-      .map(wd => wd.desired)
-      .reduce((acc, desired) => desired || acc);
 
-    if (desired == null) {
-      const weightsMap = childWeights.reduce((acc, childWeight) => {
-        if (acc[childWeight.weight] == null) {
-          acc[childWeight.weight] = {
-            childWeight: childWeight,
-            count: 0
-          };
-        }
+    let wrongResult = results.find((result) => {
+      return result.wrongProgram != null;
+    });
 
-        acc[childWeight.weight].count++;
-
-        return acc;
-      }, {});
-
-      /* for (let [weight, count] of Object.entries(weightsMap)) {
-       *   if (count == )
-       * }*/
-
-      console.log(weightsMap)
-
-      /* if (uniqueWeights.length === 2) {
-       *   const diff = Math.abs(uniqueWeights[0] - uniqueWeights[1])
-       *   desired
-       * }*/
+    if (wrongResult == null) {
+      wrongResult = this.determineWrongResult(results);
     }
 
-    console.log(childWeights);
-
     return {
+      wrongProgram: wrongResult && wrongResult.wrongProgram,
+      wrongDiff: wrongResult && wrongResult.wrongDiff,
       program: currentProgram,
-      desired: desired,
-      weight: childWeights.reduce(
-        (sum, weight) => sum + weight.weight,
+      totalWeight: results.reduce(
+        (sum, result) => sum + result.totalWeight,
         currentProgram.weight
       )
     };
+  }
+
+  determineWrongResult(results) {
+    const groupByWeight = results.reduce((acc, result) => {
+      if (acc[result.totalWeight] == null) {
+        acc[result.totalWeight] = [];
+      }
+
+      acc[result.totalWeight].push(result);
+
+      return acc;
+    }, {});
+
+    const values = Object.values(groupByWeight);
+
+    if (values.length > 1) {
+      let wrongResult, referenceResult;
+
+      if (values[0].length === 1) {
+        wrongResult = values[0][0];
+        referenceResult = values[1][0];
+      } else {
+        wrongResult = values[1][0];
+        referenceResult = values[0][0];
+      }
+
+      wrongResult.wrongProgram = wrongResult.program;
+      wrongResult.wrongDiff = referenceResult.totalWeight -
+                              wrongResult.totalWeight;
+
+      return wrongResult;
+    } else {
+      return null;
+    }
   }
 }
