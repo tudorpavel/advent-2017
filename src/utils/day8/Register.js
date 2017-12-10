@@ -18,21 +18,30 @@ export default class Register {
       .values(Register.registers)
       .map(register => register.value);
 
-    return registerValues.reduce((max, value) => {
-      if (value > max) {
-        return value;
-      } else {
-        return max;
-      }
-    });
+    return Math.max(...registerValues);
+  }
+
+  static maxHistoricalValue() {
+    const historicalValues = Object
+      .values(Register.registers)
+      .map(register => register.maxHistoricalValue);
+
+    return Math.max(...historicalValues);
   }
 
   constructor(id) {
     this.id = id;
     this.value = 0;
+    this.maxHistoricalValue = 0;
   }
 
   add(operand) {
-    return this.value += operand;
+    this.value += operand;
+
+    if (this.value > this.maxHistoricalValue) {
+      this.maxHistoricalValue = this.value;
+    }
+
+    return this.value;
   }
 }

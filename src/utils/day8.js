@@ -12,7 +12,7 @@ const computeNormal = () => {
 }
 
 const computeBonus = () => {
-  return 'N/A';
+  return Register.maxHistoricalValue().toString();
 }
 
 const day8 = (inputText, computeFunction) => {
