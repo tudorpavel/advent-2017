@@ -12,10 +12,18 @@ class DayContainer extends Component {
 
     this.handleChange = this.handleChange.bind(this);
 
-    this.state = {
-      inputText: '',
-      outputTextNormal: '',
-      outputTextBonus: ''
+    if (props.inputText != null) {
+      this.state = {
+        inputText: props.inputText,
+        outputTextNormal: this.handleNormal(props.inputText),
+        outputTextBonus: this.handleBonus(props.inputText)
+      }
+    } else {
+      this.state = {
+        inputText: '',
+        outputTextNormal: '',
+        outputTextBonus: ''
+      }
     }
   }
 
@@ -47,7 +55,8 @@ class DayContainer extends Component {
 
 DayContainer.propTypes = {
   titleId: PropTypes.string.isRequired,
-  dayHandler: PropTypes.object.isRequired
+  dayHandler: PropTypes.object.isRequired,
+  inputText: PropTypes.string
 };
 
 export default DayContainer;

@@ -20,6 +20,7 @@ const InputGroup = ({ labelText, inputName, inputValue, onChange }) => {
         className="InputGroup__input"
         value={ inputValue }
         onChange={ onChange }
+        readOnly={ onChange == null }
       />
     </div>
   );
