@@ -6,13 +6,25 @@ const rowsFromInput = (inputText) => {
     .map(row => parseInt(row, 10));
 };
 
-const day5 = (inputText) => {
+const offsetChangeStrategyNormal = (currentOffset) => {
+  return currentOffset + 1;
+}
+
+const offsetChangeStrategyBonus = (currentOffset) => {
+  if (currentOffset >= 3) {
+    return currentOffset - 1;
+  } else {
+    return currentOffset + 1;
+  }
+}
+
+const day5 = (inputText, offsetChangeStrategy) => {
   if (inputText === null) {
     return 'invalid input';
   }
 
   const jumps = rowsFromInput(inputText);
-  const jumpsList = new JumpsList(jumps);
+  const jumpsList = new JumpsList(jumps, offsetChangeStrategy);
   let lastJumpCount = 0;
 
   while (lastJumpCount !== null) {
@@ -23,9 +35,9 @@ const day5 = (inputText) => {
 }
 
 export function normal(inputText) {
-  return day5(inputText);
+  return day5(inputText, offsetChangeStrategyNormal);
 };
 
 export function bonus(inputText) {
-  return 'N/A';
+  return day5(inputText, offsetChangeStrategyBonus);
 };
