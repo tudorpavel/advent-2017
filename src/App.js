@@ -13,6 +13,7 @@ import * as day6 from './utils/day6';
 import * as day7 from './utils/day7';
 import * as day8 from './utils/day8';
 import * as day9 from './utils/day9';
+import * as day11 from './utils/day11';
 
 class App extends Component {
   render() {
@@ -23,6 +24,10 @@ class App extends Component {
           <h1 className="App__title">Advent of Code 2017</h1>
         </header>
         <div className="App__content">
+          <DayContainer
+            titleId="Day11"
+            dayHandler={ day11 }
+          />
           <DayContainer
             titleId="Day9"
             dayHandler={ day9 }
