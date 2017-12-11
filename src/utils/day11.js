@@ -1,6 +1,6 @@
 import HexGrid from './day11/HexGrid';
 
-export function normal(inputText) {
+const setup = (inputText) => {
   const directions = inputText.split(',');
   const grid = new HexGrid();
 
@@ -8,9 +8,17 @@ export function normal(inputText) {
     grid.move(direction);
   }
 
+  return grid;
+}
+
+export function normal(inputText) {
+  const grid = setup(inputText)
+
   return grid.distanceToCenter().toString();
 };
 
 export function bonus(inputText) {
-  return 'WIP';
+  const grid = setup(inputText)
+
+  return grid.maxDistanceToCenter.toString();
 };

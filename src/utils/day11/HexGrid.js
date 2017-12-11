@@ -7,6 +7,8 @@ export default class HexGrid {
     this.x = 0;
     this.y = 0;
     this.z = 0;
+
+    this.maxDistanceToCenter = 0;
   }
 
   move(direction) {
@@ -36,6 +38,10 @@ export default class HexGrid {
         this.x--;
         break;
       default:
+    }
+
+    if (this.distanceToCenter() > this.maxDistanceToCenter) {
+      this.maxDistanceToCenter = this.distanceToCenter();
     }
   }
 
