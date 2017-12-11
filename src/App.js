@@ -26,13 +26,12 @@ class App extends Component {
         </header>
         <div className="App__content">
           <DayContainer
-            titleId="Day10"
-            dayHandler={ day10 }
-            inputText="197,97,204,108,1,29,5,71,0,50,2,255,248,78,254,63"
-          />
-          <DayContainer
             titleId="Day11"
             dayHandler={ day11 }
+          />
+          <DayContainer
+            titleId="Day10"
+            dayHandler={ day10 }
           />
           <DayContainer
             titleId="Day9"
