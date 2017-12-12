@@ -27,15 +27,15 @@ export default class Graph {
     return currentNode;
   }
 
-  countNodes(currentNode) {
-    if (currentNode.seen) {
+  countNodes(currentNode, color) {
+    if (currentNode.color != null) {
       return 0;
     }
 
-    currentNode.seen = true;
+    currentNode.color = color;
 
     return 1 + currentNode.neighbors.reduce((sum, neighbor) => {
-      return sum + this.countNodes(neighbor);
+      return sum + this.countNodes(neighbor, color);
     }, 0);
   }
 }

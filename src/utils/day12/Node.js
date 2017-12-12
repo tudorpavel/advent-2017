@@ -2,7 +2,7 @@ export default class Node {
   constructor(id) {
     this.id = id;
     this.neighbors = [];
-    this.seen = false;
+    this.color = null;
   }
 
   addNeighbor(node) {
