@@ -1,32 +1,30 @@
-import SecurityScanner from './day13/SecurityScanner';
+import Firewall from './day13/Firewall';
 
 const setup = (inputText) => {
   return inputText
     .split('\n')
-    .map(row => row.split(': '));
+    .map((row) => {
+      return row.split(': ').map(num => parseInt(num, 10));
+    });
 }
 
 export function normal(inputText) {
   const pairs = setup(inputText);
-  const layers = {};
+  const firewall = new Firewall(pairs);
 
-  for (let pair of pairs) {
-    layers[pair[0]] = new SecurityScanner(pair[1]);
-  }
-
-  let severity = 0;
-
-  for (let [depth, scanner] of Object.entries(layers)) {
-    const indexAfter = scanner.indexAfter(depth);
-
-    if (indexAfter === 0) {
-      severity += depth * scanner.range;
-    }
-  }
-
-  return severity.toString();
+  return firewall.severity().toString();
 };
 
 export function bonus(inputText) {
-  return 'n/a';
+  const pairs = setup(inputText);
+  const firewall = new Firewall(pairs);
+
+  let delay = 0;
+
+  // TODO: Fix this infinite loop
+  /* while(firewall.isCaught(delay)) {
+   *   delay++;
+   * }
+   */
+  return delay.toString();
 };

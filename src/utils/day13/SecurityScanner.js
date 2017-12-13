@@ -1,8 +1,7 @@
 export default class SecurityScanner {
   constructor(range) {
     this.range = range;
-    this.index = 0;
-    this.direction = 1;
+    this._reset();
   }
 
   indexAfter(moveCount) {
@@ -10,7 +9,15 @@ export default class SecurityScanner {
       this._move();
     }
 
-    return this.index;
+    const indexAfter = this.index;
+    this._reset();
+
+    return indexAfter;
+  }
+
+  _reset() {
+    this.index = 0;
+    this.direction = 1;
   }
 
   _move() {
