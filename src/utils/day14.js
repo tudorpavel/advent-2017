@@ -7,5 +7,7 @@ export function normal(inputText) {
 }
 
 export function bonus(inputText) {
-  return 'wip';
+  const grid = new Grid(inputText);
+
+  return grid.regionsCount().toString();
 }
