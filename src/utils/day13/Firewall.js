@@ -14,4 +14,12 @@ export default class Firewall {
       return sum + scanner.severity();
     }, 0);
   }
+
+  isCaught(delay) {
+    const caughtScanner = this.scanners.find((scanner) => {
+      return scanner.isCaught(delay);
+    });
+
+    return !!caughtScanner;
+  }
 }

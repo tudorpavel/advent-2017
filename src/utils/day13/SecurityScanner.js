@@ -5,13 +5,19 @@ export default class SecurityScanner {
   }
 
   severity() {
-    if (this.scannerLength === 1) {
-      return this.layerIndex;
-    } else if (this.layerIndex % this._scannerCycle() === 0) {
+    if (this.isCaught(0)) {
       return this.layerIndex * this.scannerLength;
     } else {
       return 0;
     }
+  }
+
+  isCaught(delay) {
+    if (this.scannerLength === 1) {
+      return true;
+    }
+
+    return (this.layerIndex + delay) % this._scannerCycle() === 0;
   }
 
   _scannerCycle() {

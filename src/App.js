@@ -30,10 +30,6 @@ class App extends Component {
           <DayContainer
             titleId="Day13"
             dayHandler={ day13 }
-            inputText="0: 3
-1: 2
-4: 4
-6: 4"
           />
           <DayContainer
             titleId="Day12"

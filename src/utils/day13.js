@@ -19,14 +19,11 @@ export function bonus(inputText) {
   const pairs = setup(inputText);
   const firewall = new Firewall(pairs);
 
-  console.log(firewall.layers);
-
   let delay = 0;
 
-  // TODO: Fix this infinite loop
-  /* while(firewall.isCaught(delay)) {
-   *   delay++;
-   * }
-   */
-  return 'wip';
+  while(firewall.isCaught(delay)) {
+    delay++;
+  }
+
+  return delay.toString();
 };
